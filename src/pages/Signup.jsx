@@ -3,18 +3,18 @@ import { useState } from "react";
 import axios from "axios";
 
 const Signup = () => {
-  const [name, setName] = useState("");
+  const [Name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
-  const [errorMessage, setErrormessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   //   Permet de naviguer au click après avoir exécuté du code
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrormessage("");
+    setErrorMessage("");
     try {
       //Faire la requête axios.post avec les infos des inputs
       //   Requête axios :
@@ -24,7 +24,7 @@ const Signup = () => {
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
         {
           email: email,
-          name: name,
+          username: Name,
           password: password,
           newsletter: newsletter,
         }
@@ -35,9 +35,12 @@ const Signup = () => {
       console.log(error.response); // erreur 400/409 ==> This email already has an account/Missing parameters
       // Si j'ai un message d'erreur je récupère dans le catch les infos pour adapter la réponse envoyée à l'utilisateur
       if (error.response.status === 409) {
-        setErrormessage("Cet email est déjà utilisé");
+        setErrorMessage("Cet email est déjà utilisé");
       } else if (error.response.data.message === "Missing parameters") {
-        setErrormessage("veuillez remplir tous les champs");
+        setErrorMessage("veuillez remplir tous les champs");
+      } else {
+        // Si je tombe dans le catch pour une raison inconnue
+        setErrorMessage("Une erreur est survenue, veuillez réessayer");
       }
     }
   };
@@ -54,7 +57,7 @@ const Signup = () => {
             }}
             type="text"
             placeholder="Nom d'utilisateur"
-            value={name}
+            value={Name}
           />
           <input
             onChange={(event) => {

@@ -1,4 +1,34 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
+      //console.log(response.data.token); // renvoie le token de l'utilisateur
+      Cookies.set("vinted-token", response.data.token, { expires: 10 });
+      setToken(response.data.token);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main>
       <h1>Page Login</h1>

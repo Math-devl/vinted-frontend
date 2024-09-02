@@ -32,7 +32,8 @@ const Signup = () => {
       console.log(response.data); // rien car message d'erreur donc on va voir dans le catch
       useNavigate();
     } catch (error) {
-      console.log(error.response); // erreur 409 ==> This email already has an account
+      console.log(error.response); // erreur 400/409 ==> This email already has an account/Missing parameters
+      // Si j'ai un message d'erreur je récupère dans le catch les infos pour adapter la réponse envoyée à l'utilisateur
       if (error.response.status === 409) {
         setErrormessage("Cet email est déjà utilisé");
       } else if (error.response.data.message === "Missing parameters") {

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const Signup = () => {
+const Signup = ({ handleToken }) => {
   const [Name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,19 +29,25 @@ const Signup = () => {
           newsletter: newsletter,
         }
       );
-      console.log(response.data); // rien car message d'erreur donc on va voir dans le catch
-      useNavigate();
+      console.log(response.data); //{avec clé token : bsfgmsfvushcm}
+
+      /*  On enregistre le cookie pour 15 jours */
+      /* Cookies.set("vinted-token", response.data.token, { expires: 15 }); */
+      /*  On utilise la fonction avec comme argument le token reçu par le backend */
+      handleToken(response.data.token);
+      /* On continue la navigation vers la page Home */
+      navigate("/");
     } catch (error) {
-      console.log(error.response); // erreur 400/409 ==> This email already has an account/Missing parameters
+      console.log(error.message); // erreur 400/409 ==> This email already has an account/Missing parameters
       // Si j'ai un message d'erreur je récupère dans le catch les infos pour adapter la réponse envoyée à l'utilisateur
-      if (error.response.status === 409) {
+      /* if (error.response.status === 409) {
         setErrorMessage("Cet email est déjà utilisé");
       } else if (error.response.data.message === "Missing parameters") {
         setErrorMessage("veuillez remplir tous les champs");
       } else {
         // Si je tombe dans le catch pour une raison inconnue
         setErrorMessage("Une erreur est survenue, veuillez réessayer");
-      }
+      } */
     }
   };
 

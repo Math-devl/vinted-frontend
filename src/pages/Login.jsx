@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
-const Login = () => {
+const Login = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState(null);
 
   const navigate = useNavigate();
 
@@ -20,9 +18,9 @@ const Login = () => {
           password: password,
         }
       );
-      //console.log(response.data.token); // renvoie le token de l'utilisateur
-      Cookies.set("vinted-token", response.data.token, { expires: 10 });
-      setToken(response.data.token);
+      console.log(response.data); //{objet avec le token}
+
+      handleToken(response.data.token);
       navigate("/");
     } catch (error) {
       console.log(error);

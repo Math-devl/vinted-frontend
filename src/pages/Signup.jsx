@@ -1,0 +1,98 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
+const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [newsletter, setNewsletter] = useState(false);
+  const [errorMessage, setErrormessage] = useState("");
+
+  //   Permet de naviguer au click après avoir exécuté du code
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrormessage("");
+    try {
+      //Faire la requête axios.post avec les infos des inputs
+      //   Requête axios :
+      // - Premier argument : l'url que j'interroge
+      // - deuxième : le body que j'envoi = {}
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        {
+          email: email,
+          name: name,
+          password: password,
+          newsletter: newsletter,
+        }
+      );
+      console.log(response.data); // rien car message d'erreur donc on va voir dans le catch
+      useNavigate();
+    } catch (error) {
+      console.log(error.response); // erreur 409 ==> This email already has an account
+      if (error.response.status === 409) {
+        setErrormessage("Cet email est déjà utilisé");
+      } else if (error.response.data.message === "Missing parameters") {
+        setErrormessage("veuillez remplir tous les champs");
+      }
+    }
+  };
+
+  return (
+    <main>
+      <form onSubmit={handleSubmit}>
+        <h1>S'inscrire</h1>
+        <div className="signup-form">
+          <input
+            onChange={(event) => {
+              //console.log(event.target.value); // renvoie la lettre tapé dans le champs name
+              setName(event.target.value);
+            }}
+            type="text"
+            placeholder="Nom d'utilisateur"
+            value={name}
+          />
+          <input
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            type="email"
+            placeholder="Email"
+            value={email}
+          />
+          <input
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            type="password"
+            placeholder="Mot de passe"
+          />
+          <div className="checkbox">
+            <input
+              type="checkbox"
+              //checked permet de donner la valeur initial, ici on a choisit false donc non chechée
+              checked={newsletter}
+              onChange={() => {
+                /* On choisit au moment du click de changé la valeur de checked par l'opposée */
+                setNewsletter(!newsletter);
+              }}
+            />
+            <p>S'inscrire à la newsletter</p>
+          </div>
+          <button type="submit">S'inscrire</button>
+          <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
+        </div>
+      </form>
+      {errorMessage && (
+        <p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
+      )}
+    </main>
+
+    // Envoie de errorMessage si besoin
+  );
+};
+
+export default Signup;

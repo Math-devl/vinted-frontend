@@ -29,7 +29,7 @@ const Signup = ({ handleToken }) => {
           newsletter: newsletter,
         }
       );
-      console.log(response.data); //{avec clé token : bsfgmsfvushcm}
+      //console.log(response.data); //{avec clé token : bsfgmsfvushcm}
 
       /*  On enregistre le cookie pour 15 jours */
       /* Cookies.set("vinted-token", response.data.token, { expires: 15 }); */
@@ -40,14 +40,14 @@ const Signup = ({ handleToken }) => {
     } catch (error) {
       console.log(error.message); // erreur 400/409 ==> This email already has an account/Missing parameters
       // Si j'ai un message d'erreur je récupère dans le catch les infos pour adapter la réponse envoyée à l'utilisateur
-      /* if (error.response.status === 409) {
+      if (error.response.status === 409) {
         setErrorMessage("Cet email est déjà utilisé");
       } else if (error.response.data.message === "Missing parameters") {
         setErrorMessage("veuillez remplir tous les champs");
       } else {
         // Si je tombe dans le catch pour une raison inconnue
         setErrorMessage("Une erreur est survenue, veuillez réessayer");
-      } */
+      }
     }
   };
 

@@ -2,7 +2,7 @@ import axios from "axios"; // pour faire les requêtes
 import { useEffect, useState } from "react"; // pour ne récupérer qu'une fois les données de l'API, et utiliser les states
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ search }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +11,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          " https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/v2/offers?title=${search}`
         );
         //console.log(response.data); // objet avec clé offers:[{offre}]
         setData(response.data);
@@ -22,7 +22,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <div>Loading...</div>

@@ -49,3 +49,10 @@ form {
   display: flex;
   justify-content: center;
 }
+
+.publish-picture {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+  border-radius: 5px;
+}

@@ -52,9 +52,8 @@ const Publish = ({ token }) => {
   };
 
   return token ? (
-    <div>
-      <h1>Publish</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="publish-container">
+      <form onSubmit={handleSubmit} className="publish-form">
         {/* On donne au label le même attribut que l'id de l'input pour les lier */}
         <label htmlFor="picture-input">+ Ajoute ta photo !</label>
         <input

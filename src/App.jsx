@@ -6,7 +6,7 @@ import { useState } from "react";
 //pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
-import Header from "./components/Header";
+import Header from "./pages/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";

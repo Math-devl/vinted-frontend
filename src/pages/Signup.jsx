@@ -53,49 +53,52 @@ const Signup = ({ handleToken }) => {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <div className="form-container">
         <h1>S'inscrire</h1>
-        <div className="signup-form">
-          <input
-            onChange={(event) => {
-              //console.log(event.target.value); // renvoie la lettre tapé dans le champs name
-              setName(event.target.value);
-            }}
-            type="text"
-            placeholder="Nom d'utilisateur"
-            value={Name}
-          />
-          <input
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-            type="email"
-            placeholder="Email"
-            value={email}
-          />
-          <input
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            type="password"
-            placeholder="Mot de passe"
-          />
-          <div className="checkbox">
+        <form className="form-signup" onSubmit={handleSubmit}>
+          <div>
             <input
-              type="checkbox"
-              //checked permet de donner la valeur initial, ici on a choisit false donc non chechée
-              checked={newsletter}
-              onChange={() => {
-                /* On choisit au moment du click de changé la valeur de checked par l'opposée */
-                setNewsletter(!newsletter);
+              onChange={(event) => {
+                //console.log(event.target.value); // renvoie la lettre tapé dans le champs name
+                setName(event.target.value);
               }}
+              type="text"
+              placeholder="Nom d'utilisateur"
+              value={Name}
             />
-            <p>S'inscrire à la newsletter</p>
+            <input
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              type="email"
+              placeholder="Email"
+              value={email}
+            />
+            <input
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              type="password"
+              placeholder="Mot de passe"
+            />
+            <div>
+              <input
+                type="checkbox"
+                //checked permet de donner la valeur initial, ici on a choisit false donc non chechée
+                checked={newsletter}
+                onChange={() => {
+                  /* On choisit au moment du click de changé la valeur de checked par l'opposée */
+                  setNewsletter(!newsletter);
+                }}
+              />
+              <p>S'inscrire à la newsletter</p>
+            </div>
+            <button type="submit">S'inscrire</button>
+            <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
           </div>
-          <button type="submit">S'inscrire</button>
-          <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
-        </div>
-      </form>
+        </form>
+      </div>
+
       {errorMessage && (
         <p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
       )}

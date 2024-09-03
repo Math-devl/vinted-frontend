@@ -1,11 +1,77 @@
 .container {
-  width: 1080px;
+  width: 1280px;
   margin: 0 auto;
+}
+/*---------HEADER------------*/
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1280px;
+  height: 120px;
+  margin: auto;
+  padding: 10px 0;
 }
 
 header > img {
-  width: 100px;
-  margin-top: 20px;
+  height: 30px;
+  cursor: pointer;
+}
+.search-bar {
+  width: 590px;
+  padding-left: 40px;
+  background-color: #f5f6f7;
+  border-radius: 5px;
+  height: 37px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.header-link {
+  width: 115px;
+  height: 30px;
+  text-decoration: none;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+
+.login-signup {
+  color: #2cb1ba;
+  background-color: white;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.sell-button {
+  color: white;
+  background-color: #2cb1ba;
+  border-radius: 5px;
+}
+
+/*----------HOME-----------------*/
+
+.article-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Styling individual article items */
+.article-container article {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Fixed width for each article */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
 }
 
 .avatar {
@@ -14,45 +80,120 @@ header > img {
   border-radius: 50%;
 }
 
-.offre {
+.avatar-text {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-img {
   width: 250px;
   height: 365px;
   object-fit: cover;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signup-form {
-  background-color: lightgrey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 40vw;
-  height: 50vh;
-  padding: 5px;
-  gap: 10px;
   border-radius: 5px;
 }
 
-.signup-form input {
-  border-radius: 5px;
-  width: 50%;
-  height: 20px;
-}
+/*-------------Signup----------*/
 
-.checkbox {
+.form-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f5f6f7; /* Light grey background */
+  padding: 20px;
+}
+
+.form-signup {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Max width for the form */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form elements */
+}
+
+.form-signup input[type="text"],
+.form-signup input[type="email"],
+.form-signup input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+.form-signup button {
+  padding: 12px;
+  background-color: #2cb1ba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/*---------PUBLISH------------*/
+
+.publish-container {
+  display: flex;
+  justify-content: center; /* Center the form horizontally */
+  align-items: center; /* Center the form vertically */
+  height: 100vh; /* Full viewport height */
+  background-color: #f5f6f7; /* Light grey background */
+  padding: 20px;
+}
+
+.publish-form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Max width for the form */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form elements */
+}
+
+.publish-form label {
+  font-size: 14px;
+  color: #2c2c2c;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.publish-form input,
+.publish-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.publish-form button {
+  padding: 10px;
+  background-color: #2cb1ba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .publish-picture {
-  height: 200px;
-  width: 200px;
+  width: 100%;
+  height: auto;
   object-fit: contain;
   border-radius: 5px;
+  margin-bottom: 20px;
 }

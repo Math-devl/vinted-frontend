@@ -27,16 +27,15 @@ const Home = ({ search }) => {
   return isLoading ? (
     <div>Loading...</div>
   ) : (
-    <main>
+    <main className="article-container">
       {data.offers.map((offer) => {
         // console.log(offer); // {offre}
         return (
           <Link to={`/offers/${offer._id}`} key={offer._id}>
             <article>
-              <div>
+              <div className="avatar-text">
                 <img
                   className="avatar"
-                  // A CHECKER : avatar pas dispo sur tous les profils
                   src={offer.owner.account.avatar?.secure_url}
                   alt=""
                 />
@@ -44,7 +43,7 @@ const Home = ({ search }) => {
               </div>
 
               <img
-                className="offre"
+                className="home-img"
                 src={offer.product_image.secure_url}
                 alt=""
               />

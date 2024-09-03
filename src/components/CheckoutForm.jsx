@@ -78,7 +78,7 @@ const CheckoutForm = ({ price, title }) => {
   };
 
   return success ? (
-    <p>"Merci pour votre achat</p>
+    <p>Merci pour votre achat</p>
   ) : (
     <form onSubmit={handleSubmit}>
       <PaymentElement />

@@ -8,7 +8,7 @@ import CheckoutForm from "../components/CheckoutForm";
 
 // connection à son compte Stripe
 const stripePromise = loadStripe(
-  "pk_test_51PuwjsH1HItnFh8pmeRt5XP4eBI59TANjFOM6HtU0K0oTpQiFTBd7680VrGT7jJNoWuOCKK1CJLnQIcTjKxeu6iT00e2M5Xr8j"
+  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
 );
 
 const Payment = () => {

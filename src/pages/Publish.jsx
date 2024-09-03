@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Publish = (token) => {
+const Publish = ({ token }) => {
   // States correspondants à chaque champs à remplir pour la mise en vente de l'article
   const [picture, setPicture] = useState(null);
   const [title, setTitle] = useState("");
@@ -33,7 +33,7 @@ const Publish = (token) => {
 
       // requête avec en 1er agrument l'url , puis le formdata, et enfin les headers (ou autres)
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        "https://lereacteur-vinted-api.herokuapp.com/offers/publish",
         formData,
         {
           //en-tête utilisé pour envoyer des infos complémentaires à la requête post : ici  indique au serveur que la requête provient d'un utilisateur authentifié et autorisé à accéder à certaines ressources

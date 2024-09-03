@@ -55,7 +55,7 @@ const Offer = () => {
         <div>
           <img
             className="avatar"
-            src={data.owner.account.avatar.secure_url}
+            src={data.owner.account.avatar?.secure_url}
             alt=""
           />
           <span>{data.owner.account.username}</span>
